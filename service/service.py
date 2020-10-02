@@ -102,7 +102,7 @@ def download_file(res: requests.Response) -> str:
     """
     logger.debug("Chunked file download started")
     with tempfile.NamedTemporaryFile(delete=False) as file:
-        for chunk in res.iter_content(chunk_size=config.CHUNK_SIZE):
+        for chunk in res.iter_content(chunk_size=int(config.CHUNK_SIZE)):
             if chunk:
                 file.write(chunk)
         file.close()
